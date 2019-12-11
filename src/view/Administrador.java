@@ -31,6 +31,7 @@ public class Administrador extends javax.swing.JFrame {
         btnUsuario = new javax.swing.JButton();
         btnDisciplina = new javax.swing.JButton();
         btnTurma = new javax.swing.JButton();
+        btnUsuarioTurma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
@@ -62,6 +63,13 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
+        btnUsuarioTurma.setText("Usuários Turma");
+        btnUsuarioTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuarioTurmaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +82,8 @@ public class Administrador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1))
-                    .addComponent(btnTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUsuarioTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
@@ -88,7 +97,9 @@ public class Administrador extends javax.swing.JFrame {
                 .addComponent(btnDisciplina)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTurma)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUsuarioTurma)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,6 +120,11 @@ public class Administrador extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_btnTurmaActionPerformed
 
+    private void btnUsuarioTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioTurmaActionPerformed
+        FrmUsuarioTurma tela = new FrmUsuarioTurma();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnUsuarioTurmaActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -117,6 +133,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnDisciplina;
     private javax.swing.JButton btnTurma;
     private javax.swing.JButton btnUsuario;
+    private javax.swing.JButton btnUsuarioTurma;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
