@@ -37,4 +37,11 @@ public class Turma {
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    
 }

@@ -9,6 +9,7 @@ import dao.DisciplinaDAO;
 import dao.TurmaDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import model.Disciplina;
 import model.Turma;
 
@@ -23,6 +24,7 @@ public class FrmTurma extends javax.swing.JFrame {
      */
     public FrmTurma() {
         initComponents();
+        carregarDisciplinas();
     }
 
     /**
@@ -121,6 +123,11 @@ public class FrmTurma extends javax.swing.JFrame {
         String erro = "";
         if( nome.isEmpty() ){
             erro += "Nome\n";
+        }
+        if( ! erro.isEmpty() ){
+            JOptionPane.showMessageDialog(this, 
+                "Você esqueceu de preencher:\n" 
+                + erro );
         }else{
             Turma turma = new Turma();
             turma.setNome( nome );
