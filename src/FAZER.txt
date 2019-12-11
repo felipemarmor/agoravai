@@ -1,0 +1,11 @@
+administrador
+
+cadastra: disciplina, turma, usuarios, professor para turma e alunos para turma
+
+professor
+
+cadastra: avaliações, notas, aula, presenca
+
+aluno
+
+ve notas e presenca
