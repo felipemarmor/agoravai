@@ -136,7 +136,11 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
         model.addElement(fake); 
         
         for (Usuario usuario : listaUsuarios) {
+            if(usuario.getTipo() == 0){
+            //para não aparecer administrador na lista para usuários da turma
+            }else{
             model.addElement( usuario );
+            }
         }
         cmbUsuario.setModel( model );
         

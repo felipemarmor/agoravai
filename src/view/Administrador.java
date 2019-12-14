@@ -28,10 +28,17 @@ public class Administrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnUsuario = new javax.swing.JButton();
-        btnDisciplina = new javax.swing.JButton();
-        btnTurma = new javax.swing.JButton();
-        btnUsuarioTurma = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemUsuarioCadastrar = new javax.swing.JMenuItem();
+        jMenuItemDisciplinaCadastrar = new javax.swing.JMenuItem();
+        jMenuItemTurmaCadastrar = new javax.swing.JMenuItem();
+        jMenuItemUsuarioTurmaCadastrar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItemUsuariosListar = new javax.swing.JMenuItem();
+        jMenuItemDisciplinasListar = new javax.swing.JMenuItem();
+        jMenuItemTurmasListar = new javax.swing.JMenuItem();
+        jMenuItemUsuariosTurmasListar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
@@ -40,100 +47,138 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 204));
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("CADASTRAR");
+        jLabel1.setText("ADM");
+        jLabel1.setToolTipText("");
 
-        btnUsuario.setText("Usuário");
-        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setToolTipText("");
+
+        jMenu1.setText("Cadastrar");
+
+        jMenuItemUsuarioCadastrar.setText("Usuário");
+        jMenuItemUsuarioCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuarioActionPerformed(evt);
+                jMenuItemUsuarioCadastrarActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemUsuarioCadastrar);
 
-        btnDisciplina.setText("Disciplina");
-        btnDisciplina.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDisciplinaCadastrar.setText("Disciplina");
+        jMenuItemDisciplinaCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisciplinaActionPerformed(evt);
+                jMenuItemDisciplinaCadastrarActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemDisciplinaCadastrar);
 
-        btnTurma.setText("Turma");
-        btnTurma.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemTurmaCadastrar.setText("Turma");
+        jMenuItemTurmaCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTurmaActionPerformed(evt);
+                jMenuItemTurmaCadastrarActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemTurmaCadastrar);
 
-        btnUsuarioTurma.setText("Usuários Turma");
-        btnUsuarioTurma.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemUsuarioTurmaCadastrar.setText("Usuário Turma");
+        jMenuItemUsuarioTurmaCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuarioTurmaActionPerformed(evt);
+                jMenuItemUsuarioTurmaCadastrarActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemUsuarioTurmaCadastrar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Listar");
+
+        jMenuItemUsuariosListar.setText("Usuários");
+        jMenuItemUsuariosListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUsuariosListarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemUsuariosListar);
+
+        jMenuItemDisciplinasListar.setText("Disciplinas");
+        jMenu2.add(jMenuItemDisciplinasListar);
+
+        jMenuItemTurmasListar.setText("Turmas");
+        jMenu2.add(jMenuItemTurmasListar);
+
+        jMenuItemUsuariosTurmasListar.setText("Usuários Turmas");
+        jMenu2.add(jMenuItemUsuariosTurmasListar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addComponent(btnTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUsuarioTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(58, 58, 58))
+                .addContainerGap(177, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDisciplina)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTurma)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUsuarioTurma)
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 100, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
-        FrmUsuario tela = new FrmUsuario();
-        tela.setVisible(true);
-    }//GEN-LAST:event_btnUsuarioActionPerformed
-
-    private void btnDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisciplinaActionPerformed
-        FrmDisciplina tela = new FrmDisciplina();
-        tela.setVisible(true);
-    }//GEN-LAST:event_btnDisciplinaActionPerformed
-
-    private void btnTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurmaActionPerformed
-        FrmTurma tela = new FrmTurma();
-        tela.setVisible(true);
-    }//GEN-LAST:event_btnTurmaActionPerformed
-
-    private void btnUsuarioTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioTurmaActionPerformed
+    private void jMenuItemUsuarioTurmaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuarioTurmaCadastrarActionPerformed
         FrmUsuarioTurma tela = new FrmUsuarioTurma();
         tela.setVisible(true);
-    }//GEN-LAST:event_btnUsuarioTurmaActionPerformed
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemUsuarioTurmaCadastrarActionPerformed
+
+    private void jMenuItemUsuarioCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuarioCadastrarActionPerformed
+        FrmUsuario tela = new FrmUsuario();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemUsuarioCadastrarActionPerformed
+
+    private void jMenuItemDisciplinaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDisciplinaCadastrarActionPerformed
+        FrmDisciplina tela = new FrmDisciplina();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemDisciplinaCadastrarActionPerformed
+
+    private void jMenuItemTurmaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTurmaCadastrarActionPerformed
+        FrmTurma tela = new FrmTurma();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemTurmaCadastrarActionPerformed
+
+    private void jMenuItemUsuariosListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosListarActionPerformed
+        ListUsuario tela = new ListUsuario();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemUsuariosListarActionPerformed
     
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDisciplina;
-    private javax.swing.JButton btnTurma;
-    private javax.swing.JButton btnUsuario;
-    private javax.swing.JButton btnUsuarioTurma;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemDisciplinaCadastrar;
+    private javax.swing.JMenuItem jMenuItemDisciplinasListar;
+    private javax.swing.JMenuItem jMenuItemTurmaCadastrar;
+    private javax.swing.JMenuItem jMenuItemTurmasListar;
+    private javax.swing.JMenuItem jMenuItemUsuarioCadastrar;
+    private javax.swing.JMenuItem jMenuItemUsuarioTurmaCadastrar;
+    private javax.swing.JMenuItem jMenuItemUsuariosListar;
+    private javax.swing.JMenuItem jMenuItemUsuariosTurmasListar;
     // End of variables declaration//GEN-END:variables
 }

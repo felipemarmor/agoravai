@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.Criptografia;
 import model.Usuario;
 
 /**
@@ -84,7 +85,9 @@ public class UsuarioDAO {
     }
     
     public static int logar(String login, String senha){
-        String query = "SELECT tipo FROM usuario WHERE login = '" + login + "' and senha = '" + senha + "'";
+        String query = "SELECT tipo FROM usuario WHERE login = '" + login + "' and senha = '" + Criptografia.criptografar(senha) + ""
+                                               + "' or login = '" + login + "' and senha = '" + senha + "'";
+                                               //esse or é para usuários adicionados direto no banco
         ResultSet rs = Conexao.consultar( query );
 
         if( rs != null ){

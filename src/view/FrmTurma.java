@@ -133,6 +133,7 @@ public class FrmTurma extends javax.swing.JFrame {
             turma.setNome( nome );
             turma.setDisciplina( disc );
             TurmaDAO.inserir( turma );
+            limpar();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

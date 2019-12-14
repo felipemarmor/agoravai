@@ -6,6 +6,7 @@
 package view;
 
 import dao.UsuarioDAO;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import model.Usuario;
 
@@ -42,10 +43,27 @@ public class Login extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
+        pwdSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pwdSenhaKeyPressed(evt);
+            }
+        });
+
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLoginKeyPressed(evt);
+            }
+        });
+
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
+            }
+        });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
             }
         });
 
@@ -87,7 +105,7 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void limpar() {
         txtLogin.setText("");
         pwdSenha.setText("");
@@ -129,6 +147,24 @@ public class Login extends javax.swing.JFrame {
         validar();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_btnEntrarKeyPressed
+
+    private void pwdSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwdSenhaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_pwdSenhaKeyPressed
+
+    private void txtLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_txtLoginKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -136,7 +172,10 @@ public class Login extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+              Login tela = new Login();
+              tela.setVisible(true);
+              tela.setLocationRelativeTo(null);
+              //centraliza a pagina
             }
         });
     }
