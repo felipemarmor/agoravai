@@ -15,11 +15,22 @@ import model.Disciplina;
  */
 public class FrmDisciplina extends javax.swing.JFrame {
 
+    private Disciplina disciplina;
     /**
      * Creates new form FrmDisciplina
      */
     public FrmDisciplina() {
         initComponents();
+    }
+    
+    public FrmDisciplina(int idDisciplina) {
+        initComponents();
+        carregarFormulario(idDisciplina);
+    }
+    
+    private void carregarFormulario(int idDisciplina){
+        disciplina = DisciplinaDAO.getDisciplinaById( idDisciplina );
+        txtNome.setText(disciplina.getNome());
     }
 
     /**
@@ -90,11 +101,17 @@ public class FrmDisciplina extends javax.swing.JFrame {
                 "Você esqueceu de preencher:\n" 
                 + erro );
         }else{
-            Disciplina disc = new Disciplina();
-            disc.setNome(nome);
-            DisciplinaDAO.inserir(disc);
-            limpar();
+            if( disciplina == null ){
+                Disciplina disc = new Disciplina();
+                disc.setNome(nome);
+                DisciplinaDAO.inserir(disc);
+            }else{
+                disciplina.setNome(nome);
+                DisciplinaDAO.editar(disciplina);
+            }
+            this.dispose();
         }
+        limpar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**

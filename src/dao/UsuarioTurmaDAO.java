@@ -112,4 +112,22 @@ public class UsuarioTurmaDAO {
             return null;
         }
     }
+
+    public static boolean verificar(UsuarioTurma usutur) {
+        String query = "SELECT codTurma, codUsuario FROM usuarioTurma WHERE codTurma = " + usutur.getTurma().getId() +
+                                                " and codUsuario = " + usutur.getUsuario().getId() + "";
+        ResultSet rs = Conexao.consultar( query );
+        if(rs != null){
+            try{
+                while (rs.next()){ 
+                    return true;
+                }
+            }catch(Exception e){
+             return false;   
+            }
+        }else{
+            return false;
+        }
+        return false;
+    }
 }

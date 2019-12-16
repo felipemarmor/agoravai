@@ -65,6 +65,7 @@ public class FrmUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Formulário de Usuário");
+        setResizable(false);
 
         jLabel1.setText("Nome:");
 

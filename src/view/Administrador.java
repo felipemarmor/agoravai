@@ -102,6 +102,11 @@ public class Administrador extends javax.swing.JFrame {
         jMenu2.add(jMenuItemUsuariosListar);
 
         jMenuItemDisciplinasListar.setText("Disciplinas");
+        jMenuItemDisciplinasListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDisciplinasListarActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItemDisciplinasListar);
 
         jMenuItemTurmasListar.setText("Turmas");
@@ -162,6 +167,12 @@ public class Administrador extends javax.swing.JFrame {
         tela.setVisible(true);
         tela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItemUsuariosListarActionPerformed
+
+    private void jMenuItemDisciplinasListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDisciplinasListarActionPerformed
+        ListDisciplina tela = new ListDisciplina();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemDisciplinasListarActionPerformed
     
     /**
      * @param args the command line arguments

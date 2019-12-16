@@ -48,6 +48,7 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Formulário de Usuários para Turma");
+        setResizable(false);
 
         jLabel1.setText("Usuário:");
 
@@ -152,8 +153,13 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
         UsuarioTurma usutur = new UsuarioTurma();
         usutur.setTurma( turma );
         usutur.setUsuario( usuario );
-        UsuarioTurmaDAO.inserir( usutur );
-        limpar();
+        boolean existia = UsuarioTurmaDAO.verificar( usutur );
+        if(existia == true){
+            JOptionPane.showMessageDialog(this, "Já consta no banco!");
+        }else{
+            UsuarioTurmaDAO.inserir( usutur );
+            limpar();
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
