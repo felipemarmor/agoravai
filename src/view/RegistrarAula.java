@@ -5,7 +5,9 @@
  */
 package view;
 
+import dao.AulaDAO;
 import java.util.Date;
+import model.Aula;
 
 /**
  *
@@ -33,6 +35,9 @@ public class RegistrarAula extends javax.swing.JFrame {
         TurnoIn = new javax.swing.JTextField();
         Registrar = new javax.swing.JButton();
         DiaIn = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +66,12 @@ public class RegistrarAula extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("turno");
+
+        jLabel3.setText("Data");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +79,12 @@ public class RegistrarAula extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TurnoIn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(NomeIn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
@@ -76,17 +92,23 @@ public class RegistrarAula extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(Registrar)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addComponent(NomeIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(TurnoIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TurnoIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(DiaIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DiaIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(35, 35, 35)
                 .addComponent(Registrar)
                 .addContainerGap(74, Short.MAX_VALUE))
@@ -103,6 +125,11 @@ public class RegistrarAula extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TurnoInActionPerformed
 
+    private void limpar(){
+        NomeIn.setText("");
+        TurnoIn.setText("");
+        DiaIn.setText("");
+    }
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         String nome = NomeIn.getText();
         String turno = TurnoIn.getText();
@@ -110,9 +137,14 @@ public class RegistrarAula extends javax.swing.JFrame {
         int mes = Integer.valueOf( DiaIn.getText().substring(3,5) );
         int ano = Integer.valueOf( DiaIn.getText().substring(6) );
         Date data = new Date(ano, mes - 1, dia);
-        if(nome.isEmpty()){
-            
-        }
+        
+            Aula aula = new Aula();
+            aula.setNome(nome);
+            aula.setTurno(turno);
+            aula.setDia(data);
+            AulaDAO.inserir(aula);
+        
+        limpar();
     }//GEN-LAST:event_RegistrarActionPerformed
     
 
@@ -122,5 +154,8 @@ public class RegistrarAula extends javax.swing.JFrame {
     private javax.swing.JTextField NomeIn;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField TurnoIn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

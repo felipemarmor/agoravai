@@ -5,6 +5,16 @@
  */
 package view;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import dao.AulaDAO;
+import dao.ChamadaDAO;
+import dao.UsuarioDAO;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import model.Aula;
+import model.Chamada;
+import model.Usuario;
+
 /**
  *
  * @author 631820182
@@ -16,8 +26,34 @@ public class Presenca extends javax.swing.JFrame {
      */
     public Presenca() {
         initComponents();
+        carregarAula();
+        carregarUsuario();
     }
-
+    
+    private void carregarAula(){
+    List<Aula> listaAula = AulaDAO.getAulas();
+    DefaultComboBoxModel model = new DefaultComboBoxModel();
+    
+    for(Aula aula : listaAula){
+        model.addElement(aula);
+    
+    }
+    AulaCombo.setModel( model);
+    }
+    private void carregarUsuario(){
+    int typeUser;
+    List<Usuario> listaUsuario = UsuarioDAO.getUsuarios();
+    
+    DefaultComboBoxModel modelUser = new DefaultComboBoxModel();    
+        for(Usuario usuario : listaUsuario){
+        typeUser = usuario.getTipo();
+            if(typeUser == 1){
+                modelUser.addElement( usuario);
+            }
+         
+        }
+    UsuarioCombo.setModel( modelUser );
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +63,109 @@ public class Presenca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        AulaCombo = new javax.swing.JComboBox<>();
+        UsuarioCombo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        PresencaCombo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        Salvar = new javax.swing.JButton();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Aula");
+
+        jLabel2.setText("Aluno");
+
+        PresencaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Presente", "Ausente" }));
+
+        jLabel3.setText("Presença");
+
+        Salvar.setText("Salvar");
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AulaCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(UsuarioCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PresencaCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 179, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(Salvar)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PresencaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AulaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UsuarioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(35, 35, 35)
+                .addComponent(Salvar)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+    Boolean presenca;    
+    presenca = false;    
+    if (PresencaCombo.getSelectedItem() == "Presente"){
+    presenca = true;
+    
+    }
+    else if (PresencaCombo.getSelectedItem() == "Ausente"){
+    presenca = false;
+    }
+        Chamada chamada = new Chamada();
+        
+        Aula aula = new Aula();
+        aula = (Aula) AulaCombo.getSelectedItem();
+        
+        Usuario usuario = new Usuario();
+        usuario = (Usuario) UsuarioCombo.getSelectedItem();
+        
+        chamada.setAula(aula);
+        chamada.setPresenca(presenca);
+        chamada.setUsuario(usuario);
+        
+        ChamadaDAO.inserir(chamada);
+    }//GEN-LAST:event_SalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -49,5 +173,14 @@ public class Presenca extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> AulaCombo;
+    private javax.swing.JComboBox<String> PresencaCombo;
+    private javax.swing.JButton Salvar;
+    private javax.swing.JComboBox<String> UsuarioCombo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

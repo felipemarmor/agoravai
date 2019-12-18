@@ -4,20 +4,53 @@
  * and open the template in the editor.
  */
 package view;
-
+import dao.AvaliacaoDAO;
+import dao.NotaDAO;
+import dao.UsuarioDAO;
+import model.Nota;
+import model.Avaliacao;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import model.Usuario;
 /**
  *
- * @author 631820182
+ * @author User
  */
 public class Notas extends javax.swing.JFrame {
-
+ 
     /**
      * Creates new form Notas
      */
     public Notas() {
         initComponents();
+        carregarAvaliacao();
+        carregarUsuario();
+       
     }
-
+    private void carregarAvaliacao(){
+        List<Avaliacao> listaAvaliacao = AvaliacaoDAO.getAvaliacaos();
+             
+        DefaultComboBoxModel model = 
+                new DefaultComboBoxModel();
+        for (Avaliacao avaliacao : listaAvaliacao) {
+            model.addElement(avaliacao);
+        }
+        AvaliacaoCombo.setModel( model );
+      }
+    private void carregarUsuario(){
+    int typeUser;
+    List<Usuario> listaUsuario = UsuarioDAO.getUsuarios();
+    
+    DefaultComboBoxModel modelUser = new DefaultComboBoxModel();    
+        for(Usuario usuario : listaUsuario){
+        typeUser = usuario.getTipo();
+            if(typeUser == 1){
+                modelUser.addElement( usuario);
+            }
+         
+        }
+    UsuarioCombo.setModel( modelUser );
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,75 +60,107 @@ public class Notas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        AgendaBtn = new javax.swing.JMenuItem();
-        BoletimBtn = new javax.swing.JMenuItem();
-        TurmaBtn = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        ConceitoCombo = new javax.swing.JComboBox<>();
+        UsuarioCombo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        AvaliacaoCombo = new javax.swing.JComboBox<>();
+        Salvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Pagina");
+        jLabel1.setText("Conceito");
 
-        AgendaBtn.setText("Agenda");
-        AgendaBtn.addActionListener(new java.awt.event.ActionListener() {
+        ConceitoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A\t\t", "B", "C", "D", "S/C" }));
+
+        jLabel2.setText("Avaliação");
+
+        jLabel3.setText("Aluno");
+
+        AvaliacaoCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgendaBtnActionPerformed(evt);
+                AvaliacaoComboActionPerformed(evt);
             }
         });
-        jMenu1.add(AgendaBtn);
 
-        BoletimBtn.setText("Boletim");
-        BoletimBtn.addActionListener(new java.awt.event.ActionListener() {
+        Salvar.setText("Salvar");
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoletimBtnActionPerformed(evt);
+                SalvarActionPerformed(evt);
             }
         });
-        jMenu1.add(BoletimBtn);
-
-        TurmaBtn.setText("Turmas");
-        TurmaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TurmaBtnActionPerformed(evt);
-            }
-        });
-        jMenu1.add(TurmaBtn);
-
-        jMenuBar2.add(jMenu1);
-
-        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(ConceitoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(37, 37, 37)
+                            .addComponent(UsuarioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(AvaliacaoCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Salvar)
+                .addGap(157, 157, 157))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(ConceitoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(AvaliacaoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UsuarioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addComponent(Salvar)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AgendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendaBtnActionPerformed
-        Agenda tela = new Agenda();
-        tela.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_AgendaBtnActionPerformed
+    private void AvaliacaoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvaliacaoComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AvaliacaoComboActionPerformed
 
-    private void BoletimBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoletimBtnActionPerformed
-        Notas tela = new Notas();
-        tela.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_BoletimBtnActionPerformed
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+        Nota nota = new Nota();
+        Avaliacao avaliacao = new Avaliacao();
+        Usuario usuario = new Usuario();
+        String conceito;
+        
+        avaliacao = (Avaliacao) AvaliacaoCombo.getSelectedItem();
+        usuario = (Usuario) UsuarioCombo.getSelectedItem();
+        conceito = (String) ConceitoCombo.getSelectedItem();
+        
+        nota.setAvaliacao(avaliacao);
+        nota.setConceito(conceito);
+        nota.setUsuario(usuario);
+        NotaDAO.inserir(nota);
+        
 
-    private void TurmaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TurmaBtnActionPerformed
-        Turmas tela = new Turmas();
-        tela.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_TurmaBtnActionPerformed
+    }//GEN-LAST:event_SalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,10 +168,12 @@ public class Notas extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AgendaBtn;
-    private javax.swing.JMenuItem BoletimBtn;
-    private javax.swing.JMenuItem TurmaBtn;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JComboBox<String> AvaliacaoCombo;
+    private javax.swing.JComboBox<String> ConceitoCombo;
+    private javax.swing.JButton Salvar;
+    private javax.swing.JComboBox<String> UsuarioCombo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
