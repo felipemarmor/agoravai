@@ -82,11 +82,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Turmas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemTurmasListarActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemUsuariosTurmasListar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rios Turmas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemUsuariosTurmasListarActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

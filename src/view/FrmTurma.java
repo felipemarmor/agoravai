@@ -19,6 +19,8 @@ import model.Turma;
  */
 public class FrmTurma extends javax.swing.JFrame {
 
+    private Turma turma;
+    
     /**
      * Creates new form FrmTurma
      */
@@ -26,6 +28,31 @@ public class FrmTurma extends javax.swing.JFrame {
         initComponents();
         carregarDisciplinas();
     }
+    
+    public FrmTurma(int idTurma) {
+        initComponents();
+        carregarFormulario(idTurma);
+        carregarDisciplinas();
+    }
+    
+    private void carregarFormulario(int idTurma){
+        turma = TurmaDAO.getTurmaById( idTurma );
+        txtNome.setText(turma.getNome());
+        
+        List<Turma> listaTurmas = TurmaDAO.getTurmas();
+        for(int i = 0; i<listaTurmas.size(); i++){
+            if (listaTurmas.get(i).getId() == turma.getDisciplina().getId()){
+                cmbDisciplina.setSelectedIndex( i + 1 );
+                break;
+            }
+        }      
+    }
+    
+    private void limpar() {
+        txtNome.setText("");
+        cmbDisciplina.setSelectedIndex( 0 );
+        
+    }        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,11 +121,6 @@ public class FrmTurma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void limpar() {
-        txtNome.setText("");
-        cmbDisciplina.setSelectedIndex( 0 );
-    }
     
     private void carregarDisciplinas(){
         List<Disciplina> listaDisciplinas = DisciplinaDAO.getDisciplinas();
@@ -129,12 +151,20 @@ public class FrmTurma extends javax.swing.JFrame {
                 "Você esqueceu de preencher:\n" 
                 + erro );
         }else{
-            Turma turma = new Turma();
-            turma.setNome( nome );
-            turma.setDisciplina( disc );
-            TurmaDAO.inserir( turma );
-            limpar();
+            if(turma == null){
+                Turma turma = new Turma();
+                turma.setNome( nome );
+                turma.setDisciplina( disc );
+                TurmaDAO.inserir( turma );
+                limpar();
+            }else{
+                turma.setNome( nome );
+                turma.setDisciplina( disc );
+                TurmaDAO.editar( turma );
+            }
+            this.dispose();
         }
+        limpar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**

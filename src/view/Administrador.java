@@ -110,9 +110,19 @@ public class Administrador extends javax.swing.JFrame {
         jMenu2.add(jMenuItemDisciplinasListar);
 
         jMenuItemTurmasListar.setText("Turmas");
+        jMenuItemTurmasListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTurmasListarActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItemTurmasListar);
 
         jMenuItemUsuariosTurmasListar.setText("Usuários Turmas");
+        jMenuItemUsuariosTurmasListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUsuariosTurmasListarActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItemUsuariosTurmasListar);
 
         jMenuBar1.add(jMenu2);
@@ -173,6 +183,18 @@ public class Administrador extends javax.swing.JFrame {
         tela.setVisible(true);
         tela.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItemDisciplinasListarActionPerformed
+
+    private void jMenuItemTurmasListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTurmasListarActionPerformed
+        ListTurma tela = new ListTurma();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemTurmasListarActionPerformed
+
+    private void jMenuItemUsuariosTurmasListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosTurmasListarActionPerformed
+        ListUsuariosTurma tela = new ListUsuariosTurma();
+        tela.setVisible(true);
+        tela.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItemUsuariosTurmasListarActionPerformed
     
     /**
      * @param args the command line arguments

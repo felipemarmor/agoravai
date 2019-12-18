@@ -75,7 +75,7 @@ public class TurmaDAO {
                 + " FROM turma t "
                 + " INNER JOIN disciplina d "
                 + " ON t.codDisciplina = d.id "
-                + " WHERE id = " + idTurma;
+                + " WHERE t.id = " + idTurma;
         
         ResultSet rs = Conexao.consultar( query );
         if( rs != null){

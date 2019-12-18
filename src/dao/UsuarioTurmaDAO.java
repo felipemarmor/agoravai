@@ -86,7 +86,7 @@ public class UsuarioTurmaDAO {
                 + " ON ut.codTurma = t.id "
                 + " INNER JOIN usuario u "
                 + " ON ut.codUsuario = u.id "
-                + " WHERE id = " + idUsuarioTurma;
+                + " WHERE ut.id = " + idUsuarioTurma;
         
         ResultSet rs = Conexao.consultar( query );
         if( rs != null){

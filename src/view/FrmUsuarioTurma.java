@@ -22,6 +22,8 @@ import model.UsuarioTurma;
  */
 public class FrmUsuarioTurma extends javax.swing.JFrame {
 
+    private UsuarioTurma usuarioTurma;
+    
     /**
      * Creates new form FrmUsuarioTurma
      */
@@ -29,6 +31,26 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
         initComponents();
         carregarTurmas();
         carregarUsuarios();        
+    }
+    
+    public FrmUsuarioTurma(int idUsuarioTurma) {
+        initComponents();
+        carregarTurmas();
+        carregarUsuarios(); 
+        carregarFormulario(idUsuarioTurma);
+    }
+    
+    private void carregarFormulario(int idUsuarioTurma){
+        usuarioTurma = UsuarioTurmaDAO.getUsuarioTurmaById( idUsuarioTurma );
+        //cmbTurma.setSelectedIndex( i + 1 );
+        
+//        List<Usuario> listaUsuarios = UsuarioDAO.getUsuarios();
+//        for(int i = 0; i<listaUsuarios.size(); i++){
+//            if (listaUsuarios.get(i).getId() == usuarioTurma.getUsuario().getId()){
+//                cmbUsuario.setSelectedIndex(i + 1);
+//                break;
+//            }
+//        }
     }
 
     /**
@@ -106,6 +128,7 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void limpar() {
+        cmbTurma.setSelectedIndex( 0 );
         cmbUsuario.setSelectedIndex( 0 );
     }
     
@@ -157,14 +180,18 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
         if(existia == true){
             JOptionPane.showMessageDialog(this, "Já consta no banco!");
         }else{
-            UsuarioTurmaDAO.inserir( usutur );
-            limpar();
+            if(usuarioTurma == null){
+                UsuarioTurmaDAO.inserir( usutur );
+                limpar();
+            }else{
+                usuarioTurma.setTurma( turma );
+                usuarioTurma.setUsuario( usuario );
+                UsuarioTurmaDAO.editar( usuarioTurma );
+            }
+            this.dispose();
         }
+        limpar();
     }//GEN-LAST:event_btnSalvarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;

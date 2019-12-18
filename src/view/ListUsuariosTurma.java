@@ -5,40 +5,39 @@
  */
 package view;
 
-import dao.DisciplinaDAO;
+import dao.UsuarioTurmaDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Disciplina;
+import model.UsuarioTurma;
 
 /**
  *
  * @author Bruno
  */
-public class ListDisciplina extends javax.swing.JFrame {
+public class ListUsuariosTurma extends javax.swing.JFrame {
 
     /**
-     * Creates new form ListDisciplina
+     * Creates new form ListUsuariosTurma
      */
-    public ListDisciplina() {
+    public ListUsuariosTurma() {
         initComponents();
         carregarTabela();
     }
     
     private void carregarTabela(){
-        List<Disciplina> listaDisciplinas = DisciplinaDAO.getDisciplinas();
-        String[] colunas = {"Id" , "Nome"};
+        List<UsuarioTurma> listaUsuarioTurmas = UsuarioTurmaDAO.getUsuarioTurmas();
+        String[] colunas = {"Id" , "Turma", "Usuario"};
        
         
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers( colunas );
        
-        for (Disciplina disciplina : listaDisciplinas) {
-            Object[] linha = { disciplina.getId(), disciplina.getNome()};
+        for (UsuarioTurma usuarioTurma : listaUsuarioTurmas) {
+            Object[] linha = { usuarioTurma.getId(), usuarioTurma.getTurma(), usuarioTurma.getUsuario() };
             model.addRow( linha );
         }
-        tableDisciplinas.setModel( model );
-        
+        tableUsuariosTurma.setModel( model );
     }
 
     /**
@@ -51,23 +50,23 @@ public class ListDisciplina extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableDisciplinas = new javax.swing.JTable();
+        tableUsuariosTurma = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista Disciplinas");
+        setTitle("Lista de Usuários Turma");
         setResizable(false);
 
-        tableDisciplinas.setModel(new javax.swing.table.DefaultTableModel(
+        tableUsuariosTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nome"
+                "Id", "Turma", "Usuário"
             }
         ));
-        jScrollPane1.setViewportView(tableDisciplinas);
+        jScrollPane1.setViewportView(tableUsuariosTurma);
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +89,7 @@ public class ListDisciplina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -105,8 +104,8 @@ public class ListDisciplina extends javax.swing.JFrame {
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir)
-                        .addGap(0, 226, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -114,13 +113,15 @@ public class ListDisciplina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int linha = tableDisciplinas.getSelectedRow();
+        int linha = tableUsuariosTurma.getSelectedRow();
         if( linha < 0 ){
             JOptionPane.showMessageDialog(this,
-                "Você deve selecionar uma disciplina");
+                "Você deve selecionar um usuário de uma turma");
         }else{
-            int idDisciplina = (int) tableDisciplinas.getValueAt(linha, 0);
-            FrmDisciplina tela = new FrmDisciplina(idDisciplina);
+            int idUsuarioTurma = (int) tableUsuariosTurma.getValueAt(linha, 0);
+            //Usuario usuario = (Usuario) tableUsuariosTurma.getValueAt(linha, 2);
+            //int usuario = 1;
+            FrmUsuarioTurma tela = new FrmUsuarioTurma(idUsuarioTurma);
             tela.setVisible( true );
             tela.setLocationRelativeTo(null);
             this.dispose();
@@ -128,19 +129,19 @@ public class ListDisciplina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        int linha = tableDisciplinas.getSelectedRow();
+        int linha = tableUsuariosTurma.getSelectedRow();
         if( linha < 0 ){
             JOptionPane.showMessageDialog(this,
-                "Você deve selecionar uma disciplina");
+                "Você deve selecionar um usuário de uma turma");
         }else{
-            String nome = (String) tableDisciplinas.getValueAt(linha, 1);
+            int id = (int) tableUsuariosTurma.getValueAt(linha, 0);
             int resposta = JOptionPane.showConfirmDialog(this,
-                "Confirma que deseja excluir a disciplina " +nome+ "?",
-                "Excluir Disciplina",
+                "Confirma que deseja excluir o usuário da turma " +id+ "?",
+                "Excluir usuário da turma",
                 JOptionPane.YES_NO_OPTION);
             if( resposta == JOptionPane.YES_OPTION){
-                int id = (int) tableDisciplinas.getValueAt(linha, 0);
-                DisciplinaDAO.excluir( id );
+                int id2 = (int) tableUsuariosTurma.getValueAt(linha, 0);
+                UsuarioTurmaDAO.excluir( id2 );
                 carregarTabela();
             }
         }
@@ -150,6 +151,6 @@ public class ListDisciplina extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableDisciplinas;
+    private javax.swing.JTable tableUsuariosTurma;
     // End of variables declaration//GEN-END:variables
 }
