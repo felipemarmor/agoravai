@@ -34,13 +34,13 @@ public class FrmUsuario extends javax.swing.JFrame {
         usuario = UsuarioDAO.getUsuarioById( idUsuario );
         txtNome.setText(usuario.getNome());
         if(usuario.getTipo() == 0){
-            rbAdmin.isSelected();
+            rbAdmin.setSelected(true);
         }
         if(usuario.getTipo() == 1){
-            rbAluno.isSelected();
+            rbAluno.setSelected(true);
         }
         if(usuario.getTipo() == 2){
-            rbProf.isSelected();
+            rbProf.setSelected(true);
         }
         txtLogin.setText(usuario.getLogin());
         pwdSenha.setText(usuario.getSenha());

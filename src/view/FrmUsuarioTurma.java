@@ -44,13 +44,13 @@ public class FrmUsuarioTurma extends javax.swing.JFrame {
         usuarioTurma = UsuarioTurmaDAO.getUsuarioTurmaById( idUsuarioTurma );
         //cmbTurma.setSelectedIndex( i + 1 );
         
-//        List<Usuario> listaUsuarios = UsuarioDAO.getUsuarios();
-//        for(int i = 0; i<listaUsuarios.size(); i++){
-//            if (listaUsuarios.get(i).getId() == usuarioTurma.getUsuario().getId()){
-//                cmbUsuario.setSelectedIndex(i + 1);
-//                break;
-//            }
-//        }
+        List<Usuario> listaUsuarios = UsuarioDAO.getUsuarios();
+        for(int i = 0; i<listaUsuarios.size(); i++){
+            if (listaUsuarios.get(i).getId() == usuarioTurma.getUsuario().getId()){
+                cmbUsuario.setSelectedIndex(i);
+                break;
+            }
+        }
     }
 
     /**

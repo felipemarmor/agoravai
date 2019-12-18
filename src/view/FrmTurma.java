@@ -31,18 +31,18 @@ public class FrmTurma extends javax.swing.JFrame {
     
     public FrmTurma(int idTurma) {
         initComponents();
-        carregarFormulario(idTurma);
         carregarDisciplinas();
+        carregarFormulario(idTurma);
     }
     
     private void carregarFormulario(int idTurma){
         turma = TurmaDAO.getTurmaById( idTurma );
         txtNome.setText(turma.getNome());
         
-        List<Turma> listaTurmas = TurmaDAO.getTurmas();
-        for(int i = 0; i<listaTurmas.size(); i++){
-            if (listaTurmas.get(i).getId() == turma.getDisciplina().getId()){
-                cmbDisciplina.setSelectedIndex( i + 1 );
+        List<Disciplina> listaDisciplinas = DisciplinaDAO.getDisciplinas();
+        for(int i = 0; i<listaDisciplinas.size(); i++){
+            if (listaDisciplinas.get(i).getId() == turma.getDisciplina().getId()){
+                cmbDisciplina.setSelectedIndex(i + 1);
                 break;
             }
         }      
